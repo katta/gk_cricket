@@ -1,8 +1,8 @@
 class WeightedRandomizer
 
-  def initialize(weights, items)
-    @weights = weights
+  def initialize(items, weights)  
     @items = items
+    @weights = weights
     @weighted_items = []
 
     generate_weighted_items
