@@ -48,8 +48,4 @@ class TeamInnings
   def next_batsman
     @batting_team.next_player(@score_card.all_batsmen.keys | [@striker.name, @runner.name])
   end
-
-  def last_ball current_ball
-     current_ball == 6
-  end
 end
