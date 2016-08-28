@@ -1,5 +1,6 @@
 require 'over'
 require 'team_innings'
+require 'all_out_error'
 
 class Innings
   MAX_OVERS = 4
@@ -16,8 +17,8 @@ class Innings
           @team_innings.record_score(score, current_over + 1, current_ball)
         end
       end
-    rescue
-      
+    rescue AllOutError 
+      ## do nothing
     end
     @team_innings.score_card
   end

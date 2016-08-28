@@ -1,0 +1,2 @@
+class AllOutError < StandardError
+end

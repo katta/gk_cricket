@@ -1,3 +1,5 @@
+require 'all_out_error'
+
 class Team
   attr_reader :players
 
@@ -11,6 +13,6 @@ class Team
         return player
       end
     end
-    raise "All Out"
+    raise AllOutError, "All Out !!"
   end
 end
