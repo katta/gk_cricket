@@ -154,6 +154,15 @@ describe TeamInnings do
       expect(score_card.over_matrix[current_over][current_ball].score).to eq(:six)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to eq(subject.striker)
     end
+
+    it 'when its the last ball and the score is 3 runs' do
+      current_ball = 6
+      subject.record_score(:three, current_over, current_ball)
+
+      score_card = subject.score_card
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:three)
+      expect(score_card.over_matrix[current_over][current_ball].batsman).to eq(subject.striker)
+    end
   end
 
   context 'should get new batsman as striker' do

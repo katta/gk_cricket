@@ -25,10 +25,8 @@ class TeamInnings
     @score_card.record(@striker, @bowler, score, current_over, current_ball)
 
     if last_ball(current_ball)
-      swap(@striker, @runner)
-      if score == :out
-        @runner = next_batsman
-      end
+      swap(@striker, @runner) if !([:one,:three,:five].include? score)
+      @runner = next_batsman if score == :out
     else
       if ([:one,:three,:five].include? score)
         swap(@striker, @runner)

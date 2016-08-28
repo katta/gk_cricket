@@ -22,8 +22,8 @@ class ScoreCard
   end
 
   def print_commentary
-    @over_matrix.keys.reverse.each do |over|
-      puts "#{over} overs left:"
+    @over_matrix.keys.each do |over|
+      puts "#{(Innings::MAX_OVERS+1) - over} overs left:"
       puts ""
       (1..Over::MAX_BALLS).each { |ball| puts @over_matrix[over][ball] }
       puts ""
@@ -31,22 +31,27 @@ class ScoreCard
   end
 
   def print_batting_card
-    batsmen = {}
+    batting_card.each do |name, stats|
+      puts "#{name} - #{stats[:score]} (#{stats[:balls]})"
+    end
+  end
 
-    @over_matrix.each do |over, ocr_hash|
-      ocr_hash.each do |ball, card|
+  private
+
+  def batting_card
+    batsmen = {}
+    @over_matrix.keys.reverse.each do |over|
+      @over_matrix[over].each do |ball, card|
+        # require 'pry'; binding.pry
         name = card.batsman.name
         if batsmen[name].nil?
-          batsmen[:name] = {score:0, balls:0}
+          batsmen[name] = {score:0, balls:0}
         end
-        batsmen[:balls] += 1
-        batsmen[:score] += card.score_to_i
+        batsmen[name][:balls] += 1
+        batsmen[name][:score] += card.score_to_i
       end
     end
 
-    batsmen.each do |name, stats|
-      puts "#{name} - #{stats[:score]} (#{stats[:balls]})"
-    end
-
+    batsmen
   end
 end

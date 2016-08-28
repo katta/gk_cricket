@@ -23,6 +23,11 @@ describe Match do
     match = Match.new(team1, team2)
     match.toss
     score_card = match.play(:second)
+
+    puts "****************************"
+    score_card.print_batting_card
+    puts "****************************"
+    puts ""
     score_card.print_commentary
   end
 end
