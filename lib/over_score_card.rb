@@ -21,14 +21,14 @@ class OverScoreCard
     if score == :out
       str += "gets out !!"
     elsif score == :one
-      str += "scores #{score_in_numeric} run"
+      str += "scores #{score_to_i} run"
     else
-      str += "scores #{score_in_numeric} runs"
+      str += "scores #{score_to_i} runs"
     end
     str
   end
 
-  def score_in_numeric
+  def score_to_i
     RUNS_IN_NUMBERS[@score]
   end
 end

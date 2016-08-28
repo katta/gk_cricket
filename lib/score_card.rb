@@ -30,13 +30,23 @@ class ScoreCard
     end
   end
 
-  # def print_batting_card
-  #   batsmen = []
-  #   batsman = {}
-  #
-  #   # @over_matrix.each do |current_over, over_score_card_hash|
-  #   #   over_score_card_hash.each do |current_ball, |
-  #
-  # end
+  def print_batting_card
+    batsmen = {}
 
+    @over_matrix.each do |over, ocr_hash|
+      ocr_hash.each do |ball, card|
+        name = card.batsman.name
+        if batsmen[name].nil?
+          batsmen[:name] = {score:0, balls:0}
+        end
+        batsmen[:balls] += 1
+        batsmen[:score] += card.score_to_i
+      end
+    end
+
+    batsmen.each do |name, stats|
+      puts "#{name} - #{stats[:score]} (#{stats[:balls]})"
+    end
+
+  end
 end
