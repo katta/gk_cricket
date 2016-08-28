@@ -22,6 +22,7 @@ describe Match do
 
     match = Match.new(team1, team2)
     match.toss
-    match.play(:second)
+    score_card = match.play(:second)
+    score_card.print_commentary
   end
 end

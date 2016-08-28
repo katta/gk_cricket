@@ -20,4 +20,18 @@ class ScoreCard
 
     @over_matrix[current_over][current_ball] = over_score_card
   end
+
+  def print_commentary
+    @over_matrix.keys.reverse.each do |current_over|
+      puts "#{current_over} overs left:"
+      puts ""
+
+      ocr_hash = @over_matrix[current_over]
+      (1..6).each do |current_ball|
+        ocr = ocr_hash[current_ball]
+        puts ocr
+      end
+      puts ""
+    end
+  end
 end

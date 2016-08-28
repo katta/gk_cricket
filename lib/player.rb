@@ -1,4 +1,5 @@
 class Player
+  attr_reader :name
   attr_reader :scoring_probability
 
   def initialize(name, scoring_probability)

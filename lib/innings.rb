@@ -15,7 +15,6 @@ class Innings
         @team_innings.record_score(score, current_over + 1, current_ball)
       end
     end
-    require 'pry'; binding.pry
+    @team_innings.score_card
   end
-
 end

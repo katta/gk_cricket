@@ -11,7 +11,6 @@ class Match
   end
 
   def play(innings)
-
     @all_innings[innings].start
   end
 end
