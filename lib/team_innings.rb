@@ -26,16 +26,11 @@ class TeamInnings
   def record_score(score, current_over, current_ball)
     @score_card.record(@striker, @bowler, score, current_over, current_ball)
 
-    if Over.last_ball?(current_ball)
-      rotate_strike(@striker, @runner) if !score.rotate_strike?
-      @runner = next_batsman if score.out?
-    else
-      if (score.rotate_strike?)
-        rotate_strike(@striker, @runner)
-      elsif score.out?
-        @striker = next_batsman
-      end
-    end
+    rotate_strike(@striker, @runner) if (score.rotate_strike?)
+    rotate_strike(@striker, @runner) if Over.last_ball?(current_ball)
+
+    @runner = next_batsman if score.out? & Over.last_ball?(current_ball)
+    @striker = next_batsman if score.out? & !Over.last_ball?(current_ball)
   end
 
   private
