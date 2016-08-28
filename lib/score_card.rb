@@ -44,9 +44,8 @@ class ScoreCard
 
   def batting_card
     batsmen = {}
-    @over_matrix.keys.reverse.each do |over|
+    @over_matrix.keys.each do |over|
       @over_matrix[over].each do |ball, card|
-        # require 'pry'; binding.pry
         name = card.batsman.name
         if batsmen[name].nil?
           batsmen[name] = {score:0, balls:0}
