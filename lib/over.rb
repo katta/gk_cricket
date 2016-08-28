@@ -14,7 +14,7 @@ class Over
       current_striker = @team_innings.striker
       weighted_randomizer = WeightedRandomizer.new(current_striker.scoring_probability.keys, \
         current_striker.scoring_probability.values)
-      score = weighted_randomizer.randomItem      
+      score = weighted_randomizer.randomItem
       yield(current_ball + 1, score)
     end
   end

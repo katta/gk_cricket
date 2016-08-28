@@ -22,16 +22,21 @@ class ScoreCard
   end
 
   def print_commentary
-    @over_matrix.keys.reverse.each do |current_over|
-      puts "#{current_over} overs left:"
+    @over_matrix.keys.reverse.each do |over|
+      puts "#{over} overs left:"
       puts ""
-
-      ocr_hash = @over_matrix[current_over]
-      (1..6).each do |current_ball|
-        ocr = ocr_hash[current_ball]
-        puts ocr
-      end
+      (1..Over::MAX_BALLS).each { |ball| puts @over_matrix[over][ball] }
       puts ""
     end
   end
+
+  # def print_batting_card
+  #   batsmen = []
+  #   batsman = {}
+  #
+  #   # @over_matrix.each do |current_over, over_score_card_hash|
+  #   #   over_score_card_hash.each do |current_ball, |
+  #
+  # end
+
 end
