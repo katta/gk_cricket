@@ -44,7 +44,7 @@ class TeamInnings
   end
 
   def next_batsman
-    @batting_team.players.select {|player| !@batsmen.include? player }.first
+    @batting_team.next_player(@score_card.all_batsmen.keys)
   end
 
   def last_ball current_ball

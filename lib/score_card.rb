@@ -36,6 +36,10 @@ class ScoreCard
     end
   end
 
+  def all_batsmen
+    batting_card
+  end
+
   private
 
   def batting_card
