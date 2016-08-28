@@ -17,7 +17,7 @@ class Innings
           @team_innings.record_score(score, current_over + 1, current_ball)
         end
       end
-    rescue AllOutError 
+    rescue AllOutError
       ## do nothing
     end
     @team_innings.score_card

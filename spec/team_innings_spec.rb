@@ -1,6 +1,7 @@
 require 'team_innings'
 require 'player'
 require 'team'
+require 'score'
 
 describe TeamInnings do
 
@@ -20,6 +21,31 @@ describe TeamInnings do
     Player.new('Ram Kumar', {})
   }
 
+  let(:one_run) {
+    Score.new(:one)
+  }
+  let(:two_runs) {
+    Score.new(:two)
+  }
+  let(:three_runs) {
+    Score.new(:three)
+  }
+  let(:four_runs) {
+    Score.new(:four)
+  }
+  let(:five_runs) {
+    Score.new(:five)
+  }
+  let(:six_runs) {
+    Score.new(:six)
+  }
+  let(:out) {
+    Score.new(:out)
+  }
+  let(:dot) {
+    Score.new(:dot)
+  }
+
   subject {
     batting_team = Team.new([player1, player2, player3])
     bowling_team = Team.new([player4, player5])
@@ -31,31 +57,31 @@ describe TeamInnings do
     current_ball = 1
 
     it 'when its 3 runs' do
-      subject.record_score(:three, current_over, current_ball)
+      subject.record_score(three_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:three)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(three_runs)
     end
 
     it 'when its 1 run' do
-      subject.record_score(:one, current_over, current_ball)
+      subject.record_score(one_run, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:one)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(one_run)
     end
 
     it 'when its out' do
-      subject.record_score(:out, current_over, current_ball)
+      subject.record_score(out, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:out)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(out)
     end
 
     it 'when its a dot ball' do
-      subject.record_score(:dot, current_over, current_ball)
+      subject.record_score(dot, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:dot)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(dot)
     end
   end
 
@@ -64,63 +90,63 @@ describe TeamInnings do
     current_ball = 1
 
     it 'when the score is 1 run' do
-      subject.record_score(:one, current_over, current_ball)
+      subject.record_score(one_run, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:one)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(one_run)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
     end
 
     it 'when the score is 3 runs' do
-      subject.record_score(:three, current_over, current_ball)
+      subject.record_score(three_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:three)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(three_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
 
     end
 
     it 'when the score is 5 runs' do
-      subject.record_score(:five, current_over, current_ball)
+      subject.record_score(five_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:five)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(five_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
     end
 
     it 'when its the last ball of the over and its a dot ball' do
       current_ball = 6
-      subject.record_score(:dot, current_over, current_ball)
+      subject.record_score(dot, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:dot)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(dot)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
     end
 
     it 'when its the last ball of the over and its 2 runs' do
       current_ball = 6
-      subject.record_score(:two, current_over, current_ball)
+      subject.record_score(two_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:two)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(two_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
     end
 
     it 'when its the last ball of the over and its 4 runs' do
       current_ball = 6
-      subject.record_score(:four, current_over, current_ball)
+      subject.record_score(four_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:four)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(four_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
     end
 
     it 'when its the last ball of the over and its 6 runs' do
       current_ball = 6
-      subject.record_score(:six, current_over, current_ball)
+      subject.record_score(six_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:six)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(six_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to_not eq(subject.striker)
     end
 
@@ -132,35 +158,35 @@ describe TeamInnings do
     current_ball = 1
 
     it 'when the score is 2 runs' do
-      subject.record_score(:two, current_over, current_ball)
+      subject.record_score(two_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:two)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(two_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to eq(subject.striker)
     end
 
     it 'when the score is 4 runs' do
-      subject.record_score(:four, current_over, current_ball)
+      subject.record_score(four_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:four)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(four_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to eq(subject.striker)
     end
 
     it 'when the score is 6 runs' do
-      subject.record_score(:six, current_over, current_ball)
+      subject.record_score(six_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:six)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(six_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to eq(subject.striker)
     end
 
     it 'when its the last ball and the score is 3 runs' do
       current_ball = 6
-      subject.record_score(:three, current_over, current_ball)
+      subject.record_score(three_runs, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:three)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(three_runs)
       expect(score_card.over_matrix[current_over][current_ball].batsman).to eq(subject.striker)
     end
   end
@@ -170,10 +196,10 @@ describe TeamInnings do
     current_ball = 1
 
     it 'when the batsman gets out' do
-      subject.record_score(:out, current_over, current_ball)
+      subject.record_score(out, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:out)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(out)
       expect(subject.striker).to eq(player3)
     end
   end
@@ -183,10 +209,10 @@ describe TeamInnings do
     current_ball = 6
 
     it 'when the batsman gets out and its a last ball of the over' do
-      subject.record_score(:out, current_over, current_ball)
+      subject.record_score(out, current_over, current_ball)
 
       score_card = subject.score_card
-      expect(score_card.over_matrix[current_over][current_ball].score).to eq(:out)
+      expect(score_card.over_matrix[current_over][current_ball].score).to eq(out)
       expect(subject.striker).to eq(player2)
       expect(subject.runner).to eq(player3)
     end

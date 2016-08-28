@@ -1,5 +1,6 @@
 require 'weighted_randomizer'
 require 'team_innings'
+require 'score'
 
 class Over
   MAX_BALLS = 6
@@ -15,7 +16,7 @@ class Over
       weighted_randomizer = WeightedRandomizer.new(current_striker.scoring_probability.keys, \
         current_striker.scoring_probability.values)
       score = weighted_randomizer.randomItem
-      yield(current_ball + 1, score)
+      yield(current_ball + 1, Score.new(score))
     end
   end
 

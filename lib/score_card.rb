@@ -51,7 +51,7 @@ class ScoreCard
           batsmen[name] = {score:0, balls:0}
         end
         batsmen[name][:balls] += 1
-        batsmen[name][:score] += card.score_to_i
+        batsmen[name][:score] += card.score.to_i
       end
     end
 
