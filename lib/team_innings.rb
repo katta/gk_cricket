@@ -44,7 +44,7 @@ class TeamInnings
   end
 
   def next_batsman
-    @batting_team.next_player(@score_card.all_batsmen.keys)
+    @batting_team.next_player(@score_card.all_batsmen.keys | [@striker.name, @runner.name])
   end
 
   def last_ball current_ball
