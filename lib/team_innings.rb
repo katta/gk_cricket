@@ -1,5 +1,6 @@
 require 'team'
 require 'score_card'
+require 'over'
 
 class TeamInnings
   attr_accessor :striker
@@ -24,7 +25,7 @@ class TeamInnings
   def record_score(score, current_over, current_ball)
     @score_card.record(@striker, @bowler, score, current_over, current_ball)
 
-    if last_ball(current_ball)
+    if Over.last_ball?(current_ball)
       swap(@striker, @runner) if !([:one,:three,:five].include? score)
       @runner = next_batsman if score == :out
     else

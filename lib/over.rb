@@ -19,4 +19,8 @@ class Over
     end
   end
 
+  def self.last_ball? (ball)
+    ball == MAX_BALLS
+  end
+
 end
