@@ -22,7 +22,7 @@ describe Match do
 
     match = Match.new(team1, team2)
     match.toss
-    score_card = match.play(:second)
+    score_card = match.play(:second, 40)
 
     puts "****************************"
     score_card.print_batting_card

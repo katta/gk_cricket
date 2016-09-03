@@ -2,9 +2,11 @@ require 'over_score_card'
 
 class ScoreCard
   attr_reader :over_matrix
+  attr_reader :total_score
 
   def initialize
     @over_matrix = {}
+    @total_score = 0
   end
 
   def record(batsman, bowler, score, current_over, current_ball)
@@ -13,6 +15,8 @@ class ScoreCard
     over_score_card.bowler = bowler
     over_score_card.score = score
     over_score_card.ball = current_ball
+
+    @total_score += score.to_i
 
     if @over_matrix[current_over].nil?
       @over_matrix[current_over] = {}

@@ -1,6 +1,7 @@
 require 'over'
 require 'team_innings'
 require 'all_out_error'
+require 'game_over'
 
 class Innings
   MAX_OVERS = 4
@@ -9,14 +10,17 @@ class Innings
     @team_innings = TeamInnings.new(batting_team, bowling_team)
   end
 
-  def start
+  def start(runs_to_win)
     begin
       MAX_OVERS.times do |current_over|
         over = Over.new(@team_innings, current_over)
         over.play do |current_ball, score|
           @team_innings.record_score(score, current_over + 1, current_ball)
+          raise GameOver, "Team won the match !!" if @team_innings.score_card.total_score >= runs_to_win
         end
       end
+    rescue GameOver => e
+      puts e.message
     rescue AllOutError
       ## do nothing
     end
