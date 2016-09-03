@@ -2,6 +2,8 @@ require 'team'
 require 'score_card'
 require 'over'
 require 'score'
+require 'all_out_error'
+require 'game_over'
 
 class TeamInnings
   attr_accessor :striker
@@ -31,6 +33,23 @@ class TeamInnings
 
     @runner = next_batsman if score.out? & Over.last_ball?(current_ball)
     @striker = next_batsman if score.out? & !Over.last_ball?(current_ball)
+  end
+
+  def start(runs_to_win, no_of_overs)
+    begin
+      no_of_overs.times do |current_over|
+        over = Over.new(self, current_over)
+        over.play do |current_ball, score|
+          record_score(score, current_over + 1, current_ball)
+          raise GameOver, "Team won the match !!" if @score_card.total_score >= runs_to_win
+        end
+      end
+    rescue GameOver => e
+      puts e.message
+    rescue AllOutError
+      ## do nothing
+    end
+    @score_card
   end
 
   private

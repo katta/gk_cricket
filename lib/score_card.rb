@@ -25,9 +25,9 @@ class ScoreCard
     @over_matrix[current_over][current_ball] = over_score_card
   end
 
-  def print_commentary
+  def print_commentary(no_of_overs)
     @over_matrix.keys.each do |over|
-      puts "#{(Innings::MAX_OVERS+1) - over} overs left:"
+      puts "#{(no_of_overs+1) - over} overs left:"
       puts ""
       (1..Over::MAX_BALLS).each { |ball| puts @over_matrix[over][ball] }
       puts ""
