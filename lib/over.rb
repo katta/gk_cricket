@@ -1,18 +1,18 @@
 require 'weighted_randomizer'
-require 'team_innings'
+require 'innings'
 require 'score'
 
 class Over
   MAX_BALLS = 6
 
-  def initialize(team_innings, current_over)
-    @team_innings = team_innings
+  def initialize(innings, current_over)
+    @innings = innings
     @current_over = current_over
   end
 
   def play
     MAX_BALLS.times do |current_ball|
-      current_striker = @team_innings.striker
+      current_striker = @innings.striker
       weighted_randomizer = WeightedRandomizer.new(current_striker.scoring_probability.keys, \
         current_striker.scoring_probability.values)
       score = weighted_randomizer.randomItem

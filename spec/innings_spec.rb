@@ -1,9 +1,9 @@
-require 'team_innings'
+require 'innings'
 require 'player'
 require 'team'
 require 'score'
 
-describe TeamInnings do
+describe Innings do
 
   let(:player1) {
     Player.new('Kirat Boli', {dot: 0.05, one: 0.3, two:0.25, three:0.1, four:0.15, five:0.01, six:0.09, out:0.05 })
@@ -49,7 +49,7 @@ describe TeamInnings do
   subject {
     batting_team = Team.new([player1, player2, player3])
     bowling_team = Team.new([player4, player5])
-    TeamInnings.new(batting_team, bowling_team)
+    Innings.new(batting_team, bowling_team)
   }
 
   context 'should record score' do

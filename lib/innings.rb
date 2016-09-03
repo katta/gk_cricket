@@ -5,7 +5,7 @@ require 'score'
 require 'all_out_error'
 require 'game_over'
 
-class TeamInnings
+class Innings
   attr_accessor :striker
   attr_accessor :runner
   attr_accessor :bowler
